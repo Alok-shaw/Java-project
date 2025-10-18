@@ -2,25 +2,23 @@ import java.util.Arrays;
 
 public class MULTIPICATION238LEETCODEEXCEPTarr {
     public static void main(String[] args) {
-        int[] a={1,2,3,4};
-        int[] arr=mul(a);
-        System.out.println(Arrays.toString(arr));
+        int n = nums.length;
+        int[] ans = new int[n];
 
-    }
-    static int[] mul(int[] a){
-        int[] arr=new int[a.length];
-        for(int i=0;i<a.length;i++){
-            int sum=1;
-            for(int j=0;j<a.length;j++){
-                if(i==j){
-                }
-                else{
-                    sum=sum*a[j];
-                }
-            }
-           // System.out.println();
-            arr[i]=sum;
+        // Step 1: Left products
+        ans[0] = 1;
+        for (int i = 1; i < n; i++) {
+            ans[i] = ans[i - 1] * nums[i - 1];
         }
-        return arr;
+
+        // Step 2: Right product and final multiplication
+        int right = 1;
+        for (int i = n - 1; i >= 0; i--) {
+            ans[i] = ans[i] * right;
+            right = right * nums[i];
+        }
+
+        return ans;
     }
 }
+
